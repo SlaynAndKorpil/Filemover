@@ -37,18 +37,26 @@ int main() {
 
 #ifdef cli
 
-    if (get_input(&prefix, "Enter some file prefix to look for") != 0) {
-        std::cout << "Illegal file path entered\n";
-        return -1;
-    }
+    get_input(&prefix, "Enter some file prefix to look for") != 0)
     get_input(&path_from, "Enter path to get files from");
     get_input(&file_extension_from, "Enter file extension to convert from");
     get_input(&path_to, "Enter path to move files into");
     get_input(&file_extension_to, "Enter file extension to convert to");
+    std::string tmp_sleep = "";
+    get_input(&tmp_sleep, "Enter wait time between trys");
+    try {
+        sleep_time = std::stoi(tmp_sleep);
+    }
+    catch (...) {
+        std::cout << "Illegal input. See README for details on what to enter.";
+        return -1;
+    }
 
 #else
 
-
+    if (get_options(option_file, &path_from, &path_to, &prefix, &file_extension_from, &file_extension_to, &sleep_time) < 0) {
+        return -1;
+    }
 
 #endif
 
@@ -76,8 +84,61 @@ void get_input(std::string* var, const char* msg) {
     }
 }
 
-int get_options(std::string path, std::string* path_from, std::string* path_to, std::string* prefix, std::string* file_extension_from, std::string* file_extension_to, int* sleep_time)
-{
+int get_options(std::string path, std::string* path_from, std::string* path_to, std::string* prefix, std::string* file_extension_from, std::string* file_extension_to, int* sleep_time) {
+    std::fstream conf_file;
+    conf_file.open(path, std::ios::in);
+
+    if (conf_file.is_open()) {
+        try {
+
+            if (!std::getline(conf_file, *path_from)) {
+                std::cout << "Could not read a path to get files from from " << path << ". See README for details.\n";
+                return -1;
+            }
+
+            if (!std::getline(conf_file, *path_to)) {
+                std::cout << "Could not read a path to put files into from " << path << ". See README for details.\n";
+                return -1;
+            }
+
+            if (!std::getline(conf_file, *prefix)) {
+                std::cout << "Could not read a prefix from " << path << ". See README for details.\n";
+                return -1;
+            }
+
+            if (!std::getline(conf_file, *file_extension_from)) {
+                std::cout << "Could not read a path to get file extensions to search for from " << path << ". See README for details.\n";
+                return -1;
+            }
+
+            if (!std::getline(conf_file, *file_extension_to)) {
+                std::cout << "Could not read a path to get file extensions to convert to from " << path << ". See README for details.\n";
+                return -1;
+            }
+
+            std::string tmp_sleep_time = "";
+            if (!std::getline(conf_file, tmp_sleep_time)) {
+                std::cout << "Could not read a time from " << path << ". See README for details.\n";
+                return -1;
+            }
+            try {
+                *sleep_time = std::stoi(tmp_sleep_time);
+            }
+            catch (...) {
+                std::cout << "Could not read a time from " << path << ". See README for details.\n";
+                return -1;
+            }
+        }
+        catch (...) {
+            return -1;
+        }
+    }
+    else {
+        return -1;
+    }
+    
+    conf_file.close();
+
     return 0;
 }
 
