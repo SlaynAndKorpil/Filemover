@@ -8,7 +8,7 @@ Depending on whether you define `cli` in [ConsoleApplication1.cpp](https://githu
 
 ## Configuration file
 The file has to be named `filemover.conf` and needs to be located in the same directory as the executable.
-It contains information in the following order (every parameter needs to be in its own line, no empty lines allowed)
+It contains information in the following order (every parameter needs to be in its own line, no empty lines in between allowed)
  1. directory to move files out of
  1. directory to move files into
  1. prefix to filter files for
