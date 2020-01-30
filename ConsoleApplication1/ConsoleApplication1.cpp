@@ -1,3 +1,5 @@
+#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
+
 #include <iostream>
 #include <string>
 #include <experimental/filesystem>
@@ -55,6 +57,7 @@ int main() {
 #else
 
     if (get_options(option_file, &path_from, &path_to, &prefix, &file_extension_from, &file_extension_to, &sleep_time) < 0) {
+        std::cout << "Failed to read " << option_file << ". See README (https://github.com/SlaynAndKorpil/Filemover/edit/master/README.md)\n";
         return -1;
     }
 
