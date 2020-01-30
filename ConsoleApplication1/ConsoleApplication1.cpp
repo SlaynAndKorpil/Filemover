@@ -39,7 +39,7 @@ int main() {
 
 #ifdef cli
 
-    get_input(&prefix, "Enter some file prefix to look for") != 0)
+    get_input(&prefix, "Enter some file prefix to look for");
     get_input(&path_from, "Enter path to get files from");
     get_input(&file_extension_from, "Enter file extension to convert from");
     get_input(&path_to, "Enter path to move files into");
@@ -78,7 +78,7 @@ int main() {
 }
 
 void get_input(std::string* var, const char* msg) {
-    std::cout << msg;
+    std::cout << msg << ": ";
 
     char tmp = (int) std::cin.get();
     while (tmp != '\n') {
