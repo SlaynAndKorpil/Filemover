@@ -45,7 +45,7 @@ int main() {
     get_input(&path_to, "Enter path to move files into");
     get_input(&file_extension_to, "Enter file extension to convert to");
     std::string tmp_sleep = "";
-    get_input(&tmp_sleep, "Enter wait time between trys");
+    get_input(&tmp_sleep, "Enter wait time between tries");
     try {
         sleep_time = std::stoi(tmp_sleep);
     }
