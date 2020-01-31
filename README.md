@@ -14,9 +14,9 @@ It contains information in the following order (every parameter needs to be in i
  1. prefix to filter files for
  1. extension that all files need to have in order to be moved
  1. extension that all files should have after being moved
- 1. time (in milliseconds) which determines the time the program waits between trying to move files
+ 1. time (in milliseconds) the program waits between trying to move files
 
-Example:
+Example:https://www.thomann.de/de/basket.html
 >C:\Users\user\Desktop\background  
 C:\Users\user\Desktop\foreground  
 00  
