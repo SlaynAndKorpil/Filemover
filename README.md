@@ -16,7 +16,7 @@ It contains information in the following order (every parameter needs to be in i
  1. extension that all files should have after being moved
  1. time (in milliseconds) the program waits between trying to move files
 
-Example:https://www.thomann.de/de/basket.html
+Example:
 >C:\Users\user\Desktop\background  
 C:\Users\user\Desktop\foreground  
 00  
